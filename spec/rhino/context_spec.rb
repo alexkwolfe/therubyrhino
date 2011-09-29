@@ -34,6 +34,28 @@ describe Rhino::Context do
       end
     end
     
+    it 'allows you to get an attribute' do
+      class MyScope
+        attr_accessor :foo
+      end
+      scope = MyScope.new
+      scope.foo = 'bar'
+      Context.open(:with => scope) do |ctx|
+        ctx.eval("foo").should == 'bar'
+      end
+    end
+    
+    it 'allows you to set an attribute' do
+      class MyScope
+        attr_accessor :foo
+      end
+      scope = MyScope.new
+      Context.open(:with => scope) do |ctx|
+        ctx.eval("foo = 'bar'")
+        scope.foo.should == 'bar'
+      end
+    end
+    
     it "allows you to seal the standard objects so that they cannot be modified" do
       Context.open(:sealed => true) do |cxt|
         lambda {
