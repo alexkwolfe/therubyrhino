@@ -66,7 +66,7 @@ module Rhino
     end
     
     def public_methods
-      @public_methods ||= @ruby.public_methods(false).collect(&:to_sym)
+      @ruby.public_methods(false).collect(&:to_sym)
     end
     
     class Prototype < J::ScriptableObject
