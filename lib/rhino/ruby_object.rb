@@ -41,7 +41,7 @@ module Rhino
 
     def get(name, start)
       if name == "toString"
-        return RubyFunction.new(lambda { "[Ruby #{robject.class.name}]" })
+        return RubyFunction.new(lambda { "[Ruby #{@ruby.class.name}]" })
       end
       rb_name = rb_name(name)
       if (public_methods.include?(rb_name))
